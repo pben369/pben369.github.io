@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Trade Journal</title>
+  <link rel="stylesheet" type="text/css" href="tradejournal.css">
+
+</head>
+<body>
+  <h1>Trade Journal</h1>
+  <!-- Menu to display links to journal entries -->
+  <div class="menu-container">
+    <h2>Journal Entries</h2>
+    <ul id="menu"></ul>
+  </div>
+  
+  <div class="container">
+    <div id="date-time"></div>
+    
+    <!-- New Note entry -->
+    <label for="note">Note:</label>
+    <textarea id="note" rows="3"></textarea>
+
+    <table>
+      <tbody>
+        <tr>
+          <td class="fixed-width-column-1">
+            <label for="symbol">Symbol:</label>
+          </td>
+          <td class="fixed-width-column-2">
+            <select id="symbol" name="symbol">
+              <option value="BankNifty">BankNifty</option>
+              <option value="Nifty50">Nifty50</option>
+              <option value="Finnifty">Finnifty</option>
+            </select>
+          </td>
+          <td class="learnings" rowspan="7">
+            <label for="learnings">Learnings:</label>
+            <textarea name="learnings" id="learnings" rows="7"></textarea>
+          </td>
+        </tr>
+        <tr>
+          <td class="fixed-width-column-1">
+            <label for="strike-price">Strike Price:</label>
+          </td>
+          <td class="fixed-width-column-2">
+            <input type="text" name="strike-price" id="strike-price">
+          </td>
+        </tr>
+        <tr>
+          <td class="fixed-width-column-1">
+            <label for="option">Option:</label>
+          </td>
+          <td class="fixed-width-column-2">
+            <select id="option" name="option">
+              <option value="CE">CE</option>
+              <option value="PE">PE</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td class="fixed-width-column-1">
+            <label for="qty">Qty:</label>
+          </td>
+          <td class="fixed-width-column-2">
+            <input type="text" name="qty" id="qty">
+          </td>
+        </tr>
+        <tr>
+          <td class="fixed-width-column-1">
+            <label for="entry">Entry:</label>
+          </td>
+          <td class="fixed-width-column-2">
+            <input type="text" name="entry" id="entry">
+          </td>
+        </tr>
+        <tr>
+          <td class="fixed-width-column-1">
+            <label for="exit">Exit:</label>
+          </td>
+          <td class="fixed-width-column-2">
+            <input type="text" name="exit" id="exit">
+          </td>
+        </tr>
+        <tr>
+          <td class="fixed-width-column-1">
+            <label for="stoploss">Stoploss:</label>
+          </td>
+          <td class="fixed-width-column-2">
+            <input type="text" name="stoploss" id="stoploss">
+          </td>
+        </tr>
+        <tr>
+          <td class="fixed-width-column-1">
+            <label for="points">Points:</label>
+          </td>
+          <td class="fixed-width-column-2">
+            <input type="text" name="points" id="points">
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="chart-container">
+      <h2 class="chart-heading">Chart</h2>
+      <div id="chart-preview"></div>
+      <input type="file" id="chart-file" accept="image/*" onchange="previewImage(event)">
+      <button class="add-image-button" onclick="addImage()">Add Image</button>
+    </div>
+
+    <button class="save-button" onclick="saveJournalEntry()">Save Entry</button>
+  </div>
+  <script src="tradejournal.js"></script>
+</body>
+</html>

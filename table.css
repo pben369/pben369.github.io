@@ -1,0 +1,24 @@
+	.table-container-mul {
+		float: left;
+		padding-bottom: 20px; /* Add bottom padding with a unit (e.g., pixels) */
+	}
+	
+	table {
+      border-collapse: collapse;
+      margin: 0 auto;
+    }
+    
+    th, td {
+      padding: 8px;
+      text-align: center;
+      border: 1px solid black;
+      width: 3em; /* Set width to 3 digits */
+    }
+    
+    th {
+      background-color: #f2f2f2;
+    }
+    
+    tr:nth-child(even) {
+      background-color: #e6e6e6;
+    }

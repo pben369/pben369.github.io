@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Dealing Range Levels</title>
+  <link rel="stylesheet" type="text/css" href="dealing_range_levels.css">
+  <link rel="stylesheet" type="text/css" href="table.css">
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <style>
+    #datetime {
+      position: fixed;
+      top: 10px;
+      right: 10px;
+    }
+
+    }
+  </style>
+</head>
+<script>
+    function updateDateTime() {
+      var dateTimeElement = document.getElementById("datetime");
+      
+      var now = new Date();
+      var date = now.toDateString();
+      var time = now.toLocaleTimeString();
+      
+      dateTimeElement.innerHTML = date + " " + time;
+    }
+        
+    // Update date and time every second
+    setInterval(updateDateTime, 1000);
+    
+
+</script>
+<body>
+  <div class="menu">
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="demark_range_expansion.html">DeMark Range Expansion</a></li>
+    </ul>
+  </div>
+  <p id="datetime"></p>
+  
+  <h1> Dealing Range Levels </h1>
+  <div class="table-container-mul" id="table-container-mul"> </div>
+  
+  <div class="table-container-levels">
+    
+	
+	<table>
+      <thead>
+        <tr>
+          <th>BankNifty</th>
+          <th>Nifty</th>
+          <th>BN Call</th>
+          <th>BN Put</th>
+          <th>N50 Put</th>
+          <th>N50 Call</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <div class="input-form">
+              <label class="input-label">P03 Number:</label>
+              <span class="fixed-value">243</span>
+            </div>
+            <div class="input-form">
+              <label for="bankniftyOpenPriceInput" class="input-label">Open Price:</label>
+              <input type="number" id="bankniftyOpenPriceInput" step="0.01" class="input-field" />
+            </div>
+            <button onclick="calculateDealingRangeLevels('bankniftyOpenPriceInput', '', 'bankniftyRangeLevelsOutput')" class="calculate-button">Calculate Range Levels</button>
+            <div id="bankniftyRangeLevelsOutput" class="range-levels-output"></div>
+          </td>
+          <td>
+            <div class="input-form">
+              <label class="input-label">P03 Number:</label>
+              <span class="fixed-value">81</span>
+            </div>
+            <div class="input-form">
+              <label for="niftyOpenPriceInput" class="input-label">Open Price:</label>
+              <input type="number" id="niftyOpenPriceInput" step="0.01" class="input-field" />
+            </div>
+            <button onclick="calculateDealingRangeLevels('niftyOpenPriceInput', '', 'niftyRangeLevelsOutput')" class="calculate-button">Calculate Range Levels</button>
+            <div id="niftyRangeLevelsOutput" class="range-levels-output"></div>
+          </td>
+          <td>
+            <div class="input-form">
+              <label class="input-label">P03 Number:</label>
+              <span class="fixed-value">81</span>
+            </div>
+            <div class="input-form">
+              <label for="bnCallStrikePriceInput" class="input-label">Strike Price:</label>
+              <input type="number" id="bnCallStrikePriceInput" step="0.01" class="input-field" />
+            </div>
+            <div class="input-form">
+              <label for="bnCallOpenPriceInput" class="input-label">Open Price:</label>
+              <input type="number" id="bnCallOpenPriceInput" step="0.01" class="input-field" />
+            </div>
+            <button onclick="calculateDealingRangeLevels('bnCallOpenPriceInput', 'bnCallStrikePriceInput', 'bnCallRangeLevelsOutput')" class="calculate-button">Calculate Range Levels</button>
+            <div id="bnCallRangeLevelsOutput" class="range-levels-output"></div>
+          </td>
+          <td>
+            <div class="input-form">
+              <label class="input-label">P03 Number:</label>
+              <span class="fixed-value">81</span>
+            </div>
+            <div class="input-form">
+              <label for="bnPutStrikePriceInput" class="input-label">Strike Price:</label>
+              <input type="number" id="bnPutStrikePriceInput" step="0.01" class="input-field" />
+            </div>
+            <div class="input-form">
+              <label for="bnPutOpenPriceInput" class="input-label">Open Price:</label>
+              <input type="number" id="bnPutOpenPriceInput" step="0.01" class="input-field" />
+            </div>
+            <button onclick="calculateDealingRangeLevels('bnPutOpenPriceInput', 'bnPutStrikePriceInput', 'bnPutRangeLevelsOutput')" class="calculate-button">Calculate Range Levels</button>
+            <div id="bnPutRangeLevelsOutput" class="range-levels-output"></div>
+          </td>
+          <td>
+            <div class="input-form">
+              <label class="input-label">P03 Number:</label>
+              <span class="fixed-value">81</span>
+            </div>
+            <div class="input-form">
+              <label for="n50PutStrikePriceInput" class="input-label">Strike Price:</label>
+              <input type="number" id="n50PutStrikePriceInput" step="0.01" class="input-field" />
+            </div>
+            <div class="input-form">
+              <label for="n50PutOpenPriceInput" class="input-label">Open Price:</label>
+              <input type="number" id="n50PutOpenPriceInput" step="0.01" class="input-field" />
+            </div>
+            <button onclick="calculateDealingRangeLevels('n50PutOpenPriceInput', 'n50PutStrikePriceInput', 'n50PutRangeLevelsOutput')" class="calculate-button">Calculate Range Levels</button>
+            <div id="n50PutRangeLevelsOutput" class="range-levels-output"></div>
+          </td>
+          <td>
+            <div class="input-form">
+              <label class="input-label">P03 Number:</label>
+              <span class="fixed-value">81</span>
+            </div>
+            <div class="input-form">
+              <label for="n50CallStrikePriceInput" class="input-label">Strike Price:</label>
+              <input type="number" id="n50CallStrikePriceInput" step="0.01" class="input-field" />
+            </div>
+            <div class="input-form">
+              <label for="n50CallOpenPriceInput" class="input-label">Open Price:</label>
+              <input type="number" id="n50CallOpenPriceInput" step="0.01" class="input-field" />
+            </div>
+            <button onclick="calculateDealingRangeLevels('n50CallOpenPriceInput', 'n50CallStrikePriceInput', 'n50CallRangeLevelsOutput')" class="calculate-button">Calculate Range Levels</button>
+            <div id="n50CallRangeLevelsOutput" class="range-levels-output"></div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <script src="dealing_range_levels.js"></script>
+  <script src="table.js"></script>
+</body>
+</html>

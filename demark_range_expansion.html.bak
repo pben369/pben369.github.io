@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>DeMark Range Expansion</title>
+  <link rel="stylesheet" type="text/css" href="demark_style.css">
+  <style>
+    #datetime {
+      position: fixed;
+      top: 10px;
+      right: 10px;
+    }
+
+    }
+  </style>
+</head>
+<script>
+    function updateDateTime() {
+      var dateTimeElement = document.getElementById("datetime");
+      
+      var now = new Date();
+      var date = now.toDateString();
+      var time = now.toLocaleTimeString();
+      
+      dateTimeElement.innerHTML = date + " " + time;
+    }
+        
+    // Update date and time every second
+    setInterval(updateDateTime, 1000);
+</script>
+<body>
+  <div class="menu">
+	  <li><a href="index.html">Home</a></li>
+      <li><a href="dealing_range_levels.html">Dealing Range Levels</a></li>
+    
+  </div>
+  
+  <p id="datetime"></p>
+
+  <h1>DeMark Range Expansion</h1>
+
+  <div class="input-form">
+    <label for="openInput" class="input-label">Open:</label>
+    <input type="number" id="openInput" step="0.01" class="input-field" />
+  </div>
+  
+  <div class="input-form">
+    <label for="highInput" class="input-label">High:</label>
+    <input type="number" id="highInput" step="0.01" class="input-field" />
+  </div>
+
+  <div class="input-form">
+    <label for="lowInput" class="input-label">Low:</label>
+    <input type="number" id="lowInput" step="0.01" class="input-field" />
+  </div>
+
+  
+
+  <button onclick="calculateRange()" class="calculate-button">Calculate Range</button>
+
+  <table id="rangeOutput">
+    <thead>
+      <tr>
+        <th>Range Type</th>
+        <th>Range Value</th>
+      </tr>
+    </thead>
+    <tbody>
+	
+	  <tr>
+        <td>High Range 3</td>
+        <td id="highRange3"></td>
+      </tr>
+	  <tr>
+        <td>High Range 2</td>
+        <td id="highRange2"></td>
+      </tr>
+      <tr>
+        <td>High Range 1</td>
+        <td id="highRange1"></td>
+      </tr>
+      
+   
+      <tr>
+        <td>Low Range 1</td>
+        <td id="lowRange1"></td>
+      </tr>
+      <tr>
+        <td>Low Range 2</td>
+        <td id="lowRange2"></td>
+      </tr>
+      <tr>
+        <td>Low Range 3</td>
+        <td id="lowRange3"></td>
+      </tr>
+
+    </tbody>
+  </table>
+
+  <script src="demark_script.js"></script>
+</body>
+</html>

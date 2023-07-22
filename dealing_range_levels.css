@@ -1,0 +1,44 @@
+.columns .table-container-levels{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.column table-container-levels{
+  flex-grow: 1 1 100%;
+  max-width: 100%;
+  padding: 20px;
+}
+
+.column h2 {
+  margin-bottom: 10px;
+}
+
+.fixed-value {
+  padding: 5px;
+  border: 1px solid #ddd;
+  background-color: #f2f2f2;
+}
+
+.calculate-button {
+  margin-top: 10px;
+}
+
+.range-levels-output {
+  margin-top: 10px;
+}
+
+.range-levels-output p {
+  margin: 0;
+}
+
+.range-levels-output .high-value {
+  background-color: lightgreen;
+  display: inline-block;
+  padding: 5px;
+}
+
+.range-levels-output .low-value {
+  background-color: lightcoral;
+  display: inline-block;
+  padding: 5px;
+}
