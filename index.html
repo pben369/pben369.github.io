@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Trade Journal</title>
+  <style>
+    /* Styles for the rest of your code */
+    
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+  
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+  
+    #date-time {
+      text-align: center;
+      margin-top: 20px;
+    }
+  
+    .container {
+      width: 70%;
+      margin: 0 auto;
+      position: relative;
+    }
+  
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+      padding: 10px;
+      border: 1px solid #000;
+    }
+  
+    th, td {
+      padding: 8px;
+      border: 1px solid #000;
+    }
+  
+    form {
+      margin-top: 20px;
+    }
+  
+    label {
+      display: block;
+      margin-bottom: 10px;
+    }
+  
+    select, input[type="text"] {
+      width: 100%;
+      padding: 5px;
+      box-sizing: border-box; /* Include padding and border in the width calculation */
+    }
+
+    .learnings {
+      width: 70%;
+      height: 100%;
+    }
+
+    .fixed-width-column-1,
+    .fixed-width-column-2 {
+      width: 20%;
+    }
+
+    .learnings textarea {
+      width: 100%;
+      height: 100%;
+      box-sizing: border-box;
+      resize: none;
+      overflow: auto;
+    }
+
+    .chart-container {
+      margin-top: 20px;
+      text-align: center;
+    }
+
+    .chart-heading {
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .chart-image {
+      max-width: 100%;
+      height: auto;
+      margin-bottom: 10px;
+    }
+
+    .add-image-button {
+      display: block;
+      margin-top: 10px;
+    }
+
+    .saved-data {
+      margin-top: 20px;
+    }
+
+    .saved-data h3 {
+      margin-bottom: 10px;
+    }
+
+    .saved-data pre {
+      white-space: pre-wrap;
+      font-family: Arial, sans-serif;
+      font-size: 14px;
+    }
+
+    .edit-button {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      display: none;
+    }
+
+    .edit-mode .edit-button {
+      display: block;
+    }
+
+    .save-button {
+      margin-top: 20px;
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <h1>Trade Journal</h1>
+  <!-- Menu to display links to journal entries -->
+  <div class="menu-container">
+    <h2>Journal Entries</h2>
+    <ul id="menu"></ul>
+  </div>
+  
+  <div class="container">
+    <div id="date-time"></div>
+    
+    <!-- New Note entry -->
+    <label for="note">Note:</label>
+    <textarea id="note" rows="3"></textarea>
+
+    <table>
+      <tbody>
+        <tr>
+          <td class="fixed-width-column-1">
+            <label for="symbol">Symbol:</label>
+          </td>
+          <td class="fixed-width-column-2">
+            <select id="symbol" name="symbol">
+              <option value="BankNifty">BankNifty</option>
+              <option value="Nifty50">Nifty50</option>
+              <option value="Finnifty">Finnifty</option>
+            </select>
+          </td>
+          <td class="learnings" rowspan="7">
+            <label for="learnings">Learnings:</label>
+            <textarea name="learnings" id="learnings" rows="7"></textarea>
+          </td>
+        </tr>
+        <tr>
+          <td class="fixed-width-column-1">
+            <label for="strike-price">Strike Price:</label>
+          </td>
+          <td class="fixed-width-column-2">
+            <input type="text" name="strike-price" id="strike-price">
+          </td>
+        </tr>
+        <tr>
+          <td class="fixed-width-column-1">
+            <label for="option">Option:</label>
+          </td>
+          <td class="fixed-width-column-2">
+            <select id="option" name="option">
+              <option value="CE">CE</option>
+              <option value="PE">PE</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td class="fixed-width-column-1">
+            <label for="qty">Qty:</label>
+          </td>
+          <td class="fixed-width-column-2">
+            <input type="text" name="qty" id="qty">
+          </td>
+        </tr>
+        <tr>
+          <td class="fixed-width-column-1">
+            <label for="entry">Entry:</label>
+          </td>
+          <td class="fixed-width-column-2">
+            <input type="text" name="entry" id="entry">
+          </td>
+        </tr>
+        <tr>
+          <td class="fixed-width-column-1">
+            <label for="exit">Exit:</label>
+          </td>
+          <td class="fixed-width-column-2">
+            <input type="text" name="exit" id="exit">
+          </td>
+        </tr>
+        <tr>
+          <td class="fixed-width-column-1">
+            <label for="stoploss">Stoploss:</label>
+          </td>
+          <td class="fixed-width-column-2">
+            <input type="text" name="stoploss" id="stoploss">
+          </td>
+        </tr>
+        <tr>
+          <td class="fixed-width-column-1">
+            <label for="points">Points:</label>
+          </td>
+          <td class="fixed-width-column-2">
+            <input type="text" name="points" id="points">
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="chart-container">
+      <h2 class="chart-heading">Chart</h2>
+      <div id="chart-preview"></div>
+      <input type="file" id="chart-file" accept="image/*" onchange="previewImage(event)">
+      <button class="add-image-button" onclick="addImage()">Add Image</button>
+    </div>
+
+    <button class="save-button" onclick="saveJournalEntry()">Save Entry</button>
+  </div>
+
+
+  <script>
+    let imageIndex = 0;
+    let journalEntries = [];
+
+    // Function to display current date and time
+    function displayDateTime() {
+      const now = new Date();
+      const dateTimeElement = document.getElementById('date-time');
+      dateTimeElement.innerHTML = now.toLocaleString();
+    }
+
+    // Function to preview the selected image
+    function previewImage(event) {
+      const input = event.target;
+      const reader = new FileReader();
+      reader.onload = function () {
+          const preview = document.getElementById('chart-preview');
+          const image = document.createElement('img');
+          const imageUrl = reader.result;
+          image.src = imageUrl;
+          image.className = 'chart-image';
+          image.addEventListener('click', function () {
+              openImageInNewTab(imageUrl);
+          });
+          preview.appendChild(image);
+          imageIndex++;
+      };
+      reader.readAsDataURL(input.files[0]);
+    }
+
+    // Function to add an image
+    function addImage() {
+      const fileInput = document.getElementById('chart-file');
+      fileInput.click();
+    }
+
+    // Function to open the image in a new tab
+    function openImageInNewTab(imageUrl) {
+      const link = document.createElement('a');
+      link.href = imageUrl;
+      link.target = '_blank';
+      link.click();
+    }
+
+    // Function to save trade journal entry
+    function saveJournalEntry() {
+      const journalEntry = {
+        date: new Date().toISOString(),
+        symbol: document.getElementById('symbol').value,
+        strikePrice: document.querySelector('[name="strike-price"]').value,
+        option: document.getElementById('option').value,
+        qty: document.querySelector('[name="qty"]').value,
+        entryPrice: document.querySelector('[name="entry"]').value,
+        exitPrice: document.querySelector('[name="exit"]').value,
+        stopLoss: document.querySelector('[name="stoploss"]').value,
+        points: document.querySelector('[name="points"]').value,
+        learnings: document.querySelector('[name="learnings"]').value,
+        chartImage: getChartImage()
+      };
+
+      // Store the journal entry in the array
+      journalEntries.push(journalEntry);
+
+      // Clear the form fields after saving the entry
+      clearFormFields();
+
+      // Update the menu with links to each journal entry page
+      updateMenu();
+
+      submitToGoogleSheet();
+    }
+
+    // Function to get the chart image (if available)
+    function getChartImage() {
+      const chartPreview = document.getElementById('chart-preview');
+      const image = chartPreview.querySelector('img');
+      return image ? image.src : null;
+    }
+
+    // Function to clear form fields after saving an entry
+    function clearFormFields() {
+      const formElements = document.querySelectorAll('input[type="text"], textarea');
+      formElements.forEach((element) => (element.value = ''));
+      const chartPreview = document.getElementById('chart-preview');
+      chartPreview.innerHTML = '';
+    }
+
+    // Function to update the menu with links to each journal entry page
+    function updateMenu() {
+      const menu = document.getElementById('menu');
+      menu.innerHTML = ''; // Clear existing menu links
+
+      // Create a link for each journal entry
+      journalEntries.forEach((entry, index) => {
+        const link = document.createElement('a');
+        link.textContent = formatDate(entry.date); // Format the date for the link text
+        link.href = `#${index}`; // Use an anchor link with the entry index as the hash
+        link.addEventListener('click', function() {
+          displayJournalEntry(index); // Display the selected journal entry
+        });
+        const listItem = document.createElement('li');
+        listItem.appendChild(link);
+        menu.appendChild(listItem);
+      });
+    }
+
+    // Function to display a journal entry based on its index
+    function displayJournalEntry(index) {
+      const entry = journalEntries[index];
+      // For demonstration purposes, let's display the entry details in an alert.
+      const entryDetails = JSON.stringify(entry, null, 2);
+      alert("Trade Journal Entry:\n\n" + entryDetails);
+      // You can replace the alert with logic to display the entry details on a separate webpage.
+    }
+
+    // Function to format the date for display in the menu
+    function formatDate(dateString) {
+      const date = new Date(dateString);
+      return date.toDateString();
+    }
+
+    // Function to create a new HTML page for each journal entry
+    function createJournalEntryPage(entryIndex) {
+      const entry = journalEntries[entryIndex];
+      const formattedDate = formatDate(entry.date);
+      const pageContent = `
+        <!DOCTYPE html>
+        <html>
+        <head>
+          <title>Trade Journal Entry - ${formattedDate}</title>
+        </head>
+        <body>
+          <h1>Trade Journal Entry - ${formattedDate}</h1>
+          <pre>${JSON.stringify(entry, null, 2)}</pre>
+        </body>
+        </html>
+      `;
+
+      // Create a new Blob containing the page content
+      const blob = new Blob([pageContent], { type: 'text/html' });
+
+      // Generate a URL for the Blob (virtual URL representing the HTML file)
+      const pageUrl = URL.createObjectURL(blob);
+
+      // Create a link to the new page in the menu
+      const link = document.createElement('a');
+      link.textContent = formattedDate;
+      link.href = pageUrl;
+      const listItem = document.createElement('li');
+      listItem.appendChild(link);
+
+      // Add the link to the menu
+      const menu = document.getElementById('menu');
+      menu.appendChild(listItem);
+    }
+
+    // Function to update the menu with links to each journal entry page
+    function updateMenu() {
+      const menu = document.getElementById('menu');
+      menu.innerHTML = ''; // Clear existing menu links
+
+      // Create a link for each journal entry
+      journalEntries.forEach((entry, index) => {
+        createJournalEntryPage(index); // Create a new page for each entry
+      });
+    }
+
+    // Function to submit the form data and image to the Google Sheet
+    function submitToGoogleSheet() {
+      // Get the form data
+      const formObject = {
+        symbol: document.getElementById('symbol').value,
+        strikePrice: document.getElementById('strike-price').value,
+        option: document.getElementById('option').value,
+        qty: document.getElementById('qty').value,
+        entry: document.getElementById('entry').value,
+        exit: document.getElementById('exit').value,
+        stoploss: document.getElementById('stoploss').value,
+        points: document.getElementById('points').value,
+        learnings: document.getElementById('learnings').value,
+        note: document.getElementById('note').value,
+        image: null, // We'll set this value later
+      };
+
+      // Get the selected image
+      const imageInput = document.getElementById('chart-file');
+      const imageFile = imageInput.files[0];
+
+      if (imageFile) {
+        // Read the image as a Base64 string
+        const reader = new FileReader();
+        reader.onload = function () {
+          formObject.image = reader.result; // Store the Base64 string in the form object
+          submitDataToGoogleScript(formObject);
+        };
+        reader.readAsDataURL(imageFile);
+      } else {
+        // If no image is selected, submit the form data without the image
+        submitDataToGoogleScript(formObject);
+      }
+      console.log(formObject);
+    }
+
+    // Function to submit the form data to the Google Apps Script web app
+    function submitDataToGoogleScript(formObject) {
+      // Submit the form data to the Google Apps Script web app
+      const scriptURL = 'https://script.google.com/macros/s/AKfycbxWI0u8BlFLKZkrqd2RHO2YSMgAhZItSBTwNfzMkucMRIamVy0LD7VDbrPbGvXss5XO/exec'; // Replace with your Apps Script web app URL
+      const formData = new FormData();
+      formData.append('data', JSON.stringify(formObject));
+      fetch(scriptURL, { method: 'POST', body: formData })
+        .then(response => {
+          // Handle the response, if needed
+        })
+        .catch(error => {
+          // Handle errors, if any
+        });
+      
+      
+      // Optionally, you can clear the form fields after submitting
+      document.getElementById('symbol').value = '';
+      document.getElementById('strike-price').value = '';
+      document.getElementById('option').value = '';
+      document.getElementById('qty').value = '';
+      document.getElementById('entry').value = '';
+      document.getElementById('exit').value = '';
+      document.getElementById('stoploss').value = '';
+      document.getElementById('points').value = '';
+      document.getElementById('learnings').value = '';
+      document.getElementById('note').value = '';
+      document.getElementById('chart-file').value = ''; // Clear the file input field
+    }
+
+
+    // Call the functions when the page loads
+    window.onload = function() {
+      displayDateTime();
+      updateMenu(); // Update the menu with any existing journal entries
+      
+    };
+
+  </script>
+
+</body>
+</html>
