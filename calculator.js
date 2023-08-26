@@ -62,7 +62,7 @@ function calculateLots() {
                     <td>${quantityPerLot}</td>
                     <td>${costPerLot}</td>
                     <td>${lots}</td>
-                    <td>You will need additional ₹ ${amountShort.toFixed(2)} to buy ${lots} (${qty}).</td>
+                    <td>You will need additional ₹ ${amountShort.toFixed(2)} to buy atleast 1 lot at this premium.</td>
                 </tr>
             </table>
         `;
