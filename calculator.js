@@ -10,7 +10,7 @@ function calculateLots() {
         Nifty50: 50,
         FinNifty: 40,
         MidCpNifty: 75,
-        Sensex: 30,
+        Sensex: 30
     };
 
     // Calculate cost per lot
