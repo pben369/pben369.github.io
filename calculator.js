@@ -49,9 +49,23 @@ function calculateLots() {
     } else {
         const amountShort = costPerLot - capital;
         resultMessage = `
-            <p>INSUFFICIENT CAPITAL!!</p>
-            <p>You are short of ₹${amountShort.toFixed(2)}.</p>
-        `;
+        <table>
+            <tr>
+                <th>Index</th>
+                <th>Quantity per Lot</th>
+                <th>Cost per Lot</th>
+                <th>No. of Lots</th>
+                <th>Qty</th>
+            </tr>
+            <tr>
+                <td>${index}</td>
+                <td>${quantityPerLot}</td>
+                <td>${costPerLot}</td>
+                <td>${lots}</td>
+                <td>You will need additional ₹ ${amountShort.toFixed(2)} to buy ${lots} (${qty}).</td>
+            </tr>
+        </table>
+    `;
     }
 
     document.getElementById("result").innerHTML = resultMessage;
