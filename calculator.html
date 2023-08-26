@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lots Calculator</title>
+    <link rel="stylesheet" href="calculaor.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="datenTime.css">
+</head>
+<body>
+    <div class="menu">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="demark_range_expansion.html">DeMark Range Expansion</a></li>
+          <li><a href="dealing_range_levels.html">Dealing Range Levels</a></li>
+        </ul>
+      </div>
+    <p id="datetime"></p>
+    <h1>Lots Calculator</h1>
+    <div class="input-container">
+        <label for="capital">Capital:</label>
+        <input type="number" id="capital" placeholder="Enter capital" required>
+    </div>
+    <div class="input-container">
+        <label for="index">Index Selection:</label>
+        <select id="index">
+            <option value="Banknifty">BankNifty</option>
+            <option value="Nifty50">Nifty50</option>
+            <option value="FinNifty">FinNifty</option>
+            <option value="Sensex">Sensex</option>
+        </select>
+    </div>
+    <div class="input-container">
+        <label for="strikePrice">Strike Price Premium:</label>
+        <input type="number" id="strikePrice" placeholder="Enter strike price premium" required>
+    </div>
+    <button onclick="calculateLots()">Calculate</button>
+    <div id="result">
+        <!-- Results will be displayed here -->
+    </div>
+</body>
+<script src="calculator.js"></script>
+<script src="datenTime.js"></script>
+</html>

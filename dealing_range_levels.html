@@ -5,37 +5,15 @@
   <link rel="stylesheet" type="text/css" href="dealing_range_levels.css">
   <link rel="stylesheet" type="text/css" href="table.css">
   <link rel="stylesheet" type="text/css" href="style.css">
-  <style>
-    #datetime {
-      position: fixed;
-      top: 10px;
-      right: 10px;
-    }
+  <link rel="stylesheet" type="text/css" href="datenTime.css">
 
-    }
-  </style>
 </head>
-<script>
-    function updateDateTime() {
-      var dateTimeElement = document.getElementById("datetime");
-      
-      var now = new Date();
-      var date = now.toDateString();
-      var time = now.toLocaleTimeString();
-      
-      dateTimeElement.innerHTML = date + " " + time;
-    }
-        
-    // Update date and time every second
-    setInterval(updateDateTime, 1000);
-    
-
-</script>
 <body>
   <div class="menu">
     <ul>
       <li><a href="index.html">Home</a></li>
       <li><a href="demark_range_expansion.html">DeMark Range Expansion</a></li>
+      <li><a href="calculator.html">Lots Calculator</a></li>
     </ul>
   </div>
   <p id="datetime"></p>
@@ -154,5 +132,6 @@
 
   <script src="dealing_range_levels.js"></script>
   <script src="table.js"></script>
+  <script src="datenTime.js"></script>
 </body>
 </html>

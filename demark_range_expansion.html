@@ -4,35 +4,14 @@
   <title>DeMark Range Expansion</title>
   <link rel="stylesheet" type="text/css" href="demark_style.css">
   <link rel="stylesheet" type="text/css" href="style.css">
-  <style>
-    #datetime {
-      position: fixed;
-      top: 10px;
-      right: 10px;
-    }
-
-    }
-  </style>
+  <link rel="stylesheet" type="text/css" href="datenTime.css">
 </head>
-<script>
-    function updateDateTime() {
-      var dateTimeElement = document.getElementById("datetime");
-      
-      var now = new Date();
-      var date = now.toDateString();
-      var time = now.toLocaleTimeString();
-      
-      dateTimeElement.innerHTML = date + " " + time;
-    }
-        
-    // Update date and time every second
-    setInterval(updateDateTime, 1000);
-</script>
+
 <body>
   <div class="menu">
 	  <li><a href="index.html">Home</a></li>
-      <li><a href="dealing_range_levels.html">Dealing Range Levels</a></li>
-    
+    <li><a href="dealing_range_levels.html">Dealing Range Levels</a></li>
+    <li><a href="calculator.html">Lots Calculator</a></li>
   </div>
   
   <p id="datetime"></p>
@@ -98,5 +77,6 @@
   </table>
 
   <script src="demark_script.js"></script>
+  <script src="datenTime.js"></script>
 </body>
 </html>
