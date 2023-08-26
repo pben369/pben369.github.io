@@ -28,7 +28,7 @@ function calculateLots() {
     let resultMessage;
 
     if ( lots >=1) {
-       resultTable = `
+        resultMessage = `
             <table>
                 <tr>
                     <th>Index</th>
